@@ -11,3 +11,9 @@ def moveCoordinates(coordinates,x,y,z):
         i[1]=i[1]+y
         i[2]=i[2]+z
     return coordinates
+
+def section(point3D):
+    d=700
+    point2D=[float((point3D[0])/((point3D[2]/d)+1)),float((point3D[1])/((point3D[2]/d)+1))]
+    #print(point2D)
+    return point2D

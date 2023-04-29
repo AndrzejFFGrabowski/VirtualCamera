@@ -1,5 +1,6 @@
 import pygame
 import MathOperation as mo
+import BlockOperation as bo
 
 def drawBackground(surface):
     screen_color = (250, 250, 250)
@@ -12,15 +13,16 @@ def drawFigures(figures,surface):
 
 def drawFigure(figure,surface):
     line_color=(0,0,0)
-    pygame.draw.line(surface,line_color,mo.point3Dto2D(figure[0]),mo.point3Dto2D(figure[1]))
-    pygame.draw.line(surface,line_color,mo.point3Dto2D(figure[0]),mo.point3Dto2D(figure[2]))
-    pygame.draw.line(surface,line_color,mo.point3Dto2D(figure[0]),mo.point3Dto2D(figure[6]))
-    pygame.draw.line(surface,line_color,mo.point3Dto2D(figure[1]),mo.point3Dto2D(figure[3]))
-    pygame.draw.line(surface,line_color,mo.point3Dto2D(figure[1]),mo.point3Dto2D(figure[7]))
-    pygame.draw.line(surface,line_color,mo.point3Dto2D(figure[2]),mo.point3Dto2D(figure[3]))
-    pygame.draw.line(surface,line_color,mo.point3Dto2D(figure[2]),mo.point3Dto2D(figure[4]))
-    pygame.draw.line(surface,line_color,mo.point3Dto2D(figure[3]),mo.point3Dto2D(figure[5]))
-    pygame.draw.line(surface,line_color,mo.point3Dto2D(figure[4]),mo.point3Dto2D(figure[5]))
-    pygame.draw.line(surface,line_color,mo.point3Dto2D(figure[4]),mo.point3Dto2D(figure[6]))
-    pygame.draw.line(surface,line_color,mo.point3Dto2D(figure[5]),mo.point3Dto2D(figure[7]))
-    pygame.draw.line(surface,line_color,mo.point3Dto2D(figure[6]),mo.point3Dto2D(figure[7]))
+    figure2d=bo.flatten(figure)
+    pygame.draw.line(surface,line_color,figure2d[0],figure2d[1])
+    pygame.draw.line(surface,line_color,figure2d[0],figure2d[2])
+    pygame.draw.line(surface,line_color,figure2d[0],figure2d[6])
+    pygame.draw.line(surface,line_color,figure2d[1],figure2d[3])
+    pygame.draw.line(surface,line_color,figure2d[1],figure2d[7])
+    pygame.draw.line(surface,line_color,figure2d[2],figure2d[3])
+    pygame.draw.line(surface,line_color,figure2d[2],figure2d[4])
+    pygame.draw.line(surface,line_color,figure2d[3],figure2d[5])
+    pygame.draw.line(surface,line_color,figure2d[4],figure2d[5])
+    pygame.draw.line(surface,line_color,figure2d[4],figure2d[6])
+    pygame.draw.line(surface,line_color,figure2d[5],figure2d[7])
+    pygame.draw.line(surface,line_color,figure2d[6],figure2d[7])

@@ -1,30 +1,28 @@
 import pygame 
 import Draw as dr
+import MathOperation as mo
 
-def keyListener(cameraCoordinates,coordinates,surface): 
+def keyListener(camera,coordinates,screen): 
     pressed = pygame.key.get_pressed()
     if pressed[pygame.K_UP]:
-        cameraCoordinates[0]=cameraCoordinates[0]+1
-        cameraCoordinates[1]=cameraCoordinates[1]-1
-        update(cameraCoordinates,coordinates,surface)
+        coordinates=mo.moveCoordinates(coordinates,0,-1,0)
+        dr.reDraw(camera,coordinates,screen)
     elif pressed[pygame.K_DOWN]:
-        cameraCoordinates[0]=cameraCoordinates[0]-1
-        cameraCoordinates[1]=cameraCoordinates[1]+1
-        update(cameraCoordinates,coordinates,surface)
+        coordinates=mo.moveCoordinates(coordinates,0,1,0)
+        dr.reDraw(camera,coordinates,screen)
+        print(coordinates)
     elif pressed[pygame.K_LEFT]:
-        cameraCoordinates[0]=cameraCoordinates[0]-1
-        cameraCoordinates[1]=cameraCoordinates[1]-1
-        update(cameraCoordinates,coordinates,surface)
-
+        coordinates=mo.moveCoordinates(coordinates,-1,0,0)
+        dr.reDraw(camera,coordinates,screen)
     elif pressed[pygame.K_RIGHT]:
-        cameraCoordinates[0]=cameraCoordinates[0]+1
-        cameraCoordinates[1]=cameraCoordinates[1]+1
-        coordinates=mo.moveCoordinates(coordinates,-1,0)
-#        update(cameraCoordinates,coordinates,surface)
-
-
-def update(cameraCoordinates,coordinates,surface):
-    coordinates[0]=coordinates[0]+cameraCoordinates[0]
-    coordinates[1]=coordinates[1]+cameraCoordinates[1]
-    dr.drawFigure(coordinates,surface)
+        print(coordinates)
+        coordinates=mo.moveCoordinates(coordinates,+1,0,0)
+        dr.reDraw(camera,coordinates,screen)
+    elif pressed[pygame.K_a]:
+        coordinates=mo.moveCoordinates(coordinates,0,0,-1)
+        dr.reDraw(camera,coordinates,screen)
+    elif pressed[pygame.K_d]:
+        coordinates=mo.moveCoordinates(coordinates,0,0,1)
+        dr.reDraw(camera,coordinates,screen)
+    pygame.display.flip()
     pygame.display.update()

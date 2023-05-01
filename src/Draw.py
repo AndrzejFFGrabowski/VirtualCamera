@@ -26,3 +26,8 @@ def drawFigure(figure,surface):
     pygame.draw.line(surface,line_color,figure2d[4],figure2d[6])
     pygame.draw.line(surface,line_color,figure2d[5],figure2d[7])
     pygame.draw.line(surface,line_color,figure2d[6],figure2d[7])
+
+
+def reDraw(camera,coordinates,screen):
+    drawBackground(screen)
+    drawFigure(coordinates,screen)

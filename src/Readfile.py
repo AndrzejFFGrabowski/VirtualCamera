@@ -2,7 +2,7 @@ import numpy as np
 
 def getCoordinates():
     array = np.ones((8,3)) 
-    myfile = open("data/figure.txt", "r")
+    myfile = open("data/figure050.txt", "r")
     i=0
     for line in myfile:
         tmp=line.split()

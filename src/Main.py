@@ -16,7 +16,7 @@ def start(coordinates,cameraCoordinates):
     current_size = (XPIX*9, YPIX*9)
     screen = pygame.display.set_mode(current_size)
     pygame.display.set_caption('Camera')
-    dr.reDraw(cameraCoordinates,coordinates,screen)
+    dr.firstDraw(cameraCoordinates,coordinates,screen)
     #screen = pygame.display.set_mode((450,450))
     run(cameraCoordinates,coordinates,screen)
 
@@ -30,7 +30,7 @@ def run(cameraCoordinates,coordinates,screen):
 def main():
     coordinates = Readfile.getCoordinates()
     print(coordinates)
-    cameraCoordinatesT=(250,250)
+    cameraCoordinatesT=(250.0,250.0,0)
     cameraCoordinates=list(cameraCoordinatesT)
     start(coordinates,cameraCoordinates)
 

@@ -31,3 +31,9 @@ def drawFigure(figure,surface):
 def reDraw(camera,coordinates,screen):
     drawBackground(screen)
     drawFigure(coordinates,screen)
+        #bo.alignCamera(camera,coordinates),screen)
+
+
+def firstDraw(camera,coordinates,screen):
+    drawBackground(screen)
+    drawFigure(bo.alignCamera(camera,coordinates),screen)

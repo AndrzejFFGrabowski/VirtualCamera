@@ -12,10 +12,18 @@ def moveCoordinates(coordinates,x,y,z):
         i[2]=i[2]+z
     return coordinates
 
-def section(point3D):
-    d=700
+def section(point3D,d):
+    #d=700
     if(((point3D[2]/d)+1)==0):
         print("index 2 div/0")
     point2D=[float((point3D[0])/((point3D[2]/d)+1)),float((point3D[1])/((point3D[2]/d)+1))]
-    #print(point2D)
-    return point2D
+    #return point2D
+    return canvas(point2D[0],point2D[1])
+
+
+def canvas(x, y):
+    Vw=400
+    Vh=400
+    Cw=500
+    Ch=500
+    return (x * Cw/Vw, y * Ch/Vh)

@@ -13,19 +13,20 @@ os.environ['SDL_VIDEO_WINDOW_POS'] = '%d,%d' % (Width/2-300, 100)
 def start(coordinates,cameraCoordinates):
     pygame.init()
     base_size = (XPIX, YPIX)
-    current_size = (XPIX*9, YPIX*9)
+    current_size = (XPIX*10, YPIX*10)
     screen = pygame.display.set_mode(current_size)
     pygame.display.set_caption('Camera')
-    dr.firstDraw(cameraCoordinates,coordinates,screen)
+    dr.firstDraw(cameraCoordinates,coordinates,screen,700)
     #screen = pygame.display.set_mode((450,450))
     run(cameraCoordinates,coordinates,screen)
 
 def run(cameraCoordinates,coordinates,screen):
     running = True
     pygame.display.update()
+    d=700
     while running:
         event = pygame.event.poll()
-        li.keyListener(cameraCoordinates,coordinates,screen)
+        d=li.keyListener(cameraCoordinates,coordinates,screen,d)
 
 def main():
     coordinates = Readfile.getCoordinates()

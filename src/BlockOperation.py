@@ -9,7 +9,8 @@ def flatten(figure3d,d):
 
 def alignCamera(camera,coordinates):
     copy=coordinates
-    for i in range(len(coordinates)):
-        for j in range(3):
-            copy[i,j]+=camera[j]
+    for tmp in copy:
+        for i in range(len(coordinates)):
+            for j in range(3):
+                tmp[i,j]+=camera[j]
     return copy

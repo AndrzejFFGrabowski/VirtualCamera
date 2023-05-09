@@ -8,8 +8,8 @@ def drawBackground(surface):
     pygame.display.flip()
 
 def drawFigures(figure,surface,d):
-    for i in range(2):
-        drawFigure(figure[i],surface,d)
+    for i in figure:
+        drawFigure(i,surface,d)
 
 def drawFigure(figure,surface,d):
     line_color=(0,0,0)

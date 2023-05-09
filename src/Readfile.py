@@ -1,7 +1,7 @@
 import numpy as np
 
 def getCoordinates():
-    array = np.ones((2,8,3))
+    array = np.ones((8,8,3))
     myfile = open("data/figure050f2.txt", "r")
     i=0
     k=0

@@ -31,7 +31,7 @@ def run(cameraCoordinates,coordinates,screen):
 def main():
     coordinates = Readfile.getCoordinates()
     print(coordinates)
-    cameraCoordinatesT=(250.0,250.0,0)
+    cameraCoordinatesT=(150.0,150.0,0)
     cameraCoordinates=list(cameraCoordinatesT)
     start(coordinates,cameraCoordinates)
 

@@ -22,16 +22,16 @@ def keyListener(camera,coordinates,screen,d,transformation):
         dr.reDraw(camera,coordinates,screen,d,transformation)
     elif pressed[pygame.K_a]:
         coordinates=mo.moveCoordinates(coordinates,0,0,-1)
-        dr.reDraw(camera,coordinates,screen,d)
+        dr.reDraw(camera,coordinates,screen,d,transformation)
     elif pressed[pygame.K_d]:
         coordinates=mo.moveCoordinates(coordinates,0,0,1)
-        dr.reDraw(camera,coordinates,screen,d)
+        dr.reDraw(camera,coordinates,screen,d,transformation)
     elif pressed[pygame.K_z]:
         d=d-1
-        dr.reDraw(camera,coordinates,screen,d)
+        dr.reDraw(camera,coordinates,screen,d,transformation)
     elif pressed[pygame.K_x]:
         d=d+1
-        dr.reDraw(camera,coordinates,screen,d)
+        dr.reDraw(camera,coordinates,screen,d,transformation)
     elif pressed[pygame.K_q]:
         print('left')
     elif pressed[pygame.K_e]:

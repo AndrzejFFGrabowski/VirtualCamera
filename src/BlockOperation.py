@@ -1,5 +1,6 @@
 import MathOperation as mo
 import numpy as np
+import math
 
 def flatten(figure3d,d,transformation):
     transformationValues=[45,4,3,1,100,10]
@@ -25,14 +26,15 @@ def projectMatrix(projectionMatrix,coordinates):
     return copy
 
 
-def createProjectiveMatrix(bottom,top,far,near,left,right):
+def createProjectiveMatrix(fov,aspect,znear,zfar,left,right):
     width = 100
     height= 100
+    aspect=height/width
     z = 500
-    Matrix=[((width/(right-left)),(0),(0),((-left*width)/(right-left))),
-            ((),(height/(bottom-top)),(),((-top*height/bottom-top))),
-            ((),(),(z/(far-near)),(-near*z/(far-near))),
-            ((),(),(),(1)),
+    Matrix=[((aspect*(1/math.tan(fov/2))),(0),(0),(0)),
+            ((0),(1/math.tan(fov/2)),(0),(0)),
+            ((0),(0),(zfar/(zfar-znear)),((-zfar*znear)/(zfar-znear))),
+            ((0),(0),(0),(1)),
     ]
     return Matrix
 

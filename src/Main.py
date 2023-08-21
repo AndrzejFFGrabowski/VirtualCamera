@@ -12,27 +12,27 @@ Width = GetSystemMetrics(0)
 os.environ['SDL_VIDEO_WINDOW_POS'] = '%d,%d' % (Width/2-300, 100)
 
 def start(coordinates,cameraCoordinates):
-    transformation=[45,4,1000,1,110,600]
+    transformation=[45,1,1,1000000000,110,600]
     pygame.init()
     base_size = (XPIX, YPIX)
     current_size = (XPIX*10, YPIX*10)
     screen = pygame.display.set_mode(current_size)
     pygame.display.set_caption('Camera')
-    dr.reDraw(cameraCoordinates,coordinates,screen,700,transformation)
+    dr.reDraw(cameraCoordinates,coordinates,screen,700,transformation,0,0,0)
     #screen = pygame.display.set_mode((450,450))
     run(cameraCoordinates,coordinates,screen,transformation)
 
 def run(cameraCoordinates,coordinates,screen,transformation):
     running = True
     pygame.display.update()
-    d=700
+    d=[0,0,0]
     while running:
         event = pygame.event.poll()
         d=li.keyListener(cameraCoordinates,coordinates,screen,d,transformation)
 
 def main():
     coordinates = Readfile.getCoordinates()
-    print(coordinates)
+    #print(coordinates)
     cameraCoordinatesT=(150.0,150.0,0)
     projectionMAtrix=()
     cameraCoordinates=list(cameraCoordinatesT)

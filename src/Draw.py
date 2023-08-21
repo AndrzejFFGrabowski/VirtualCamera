@@ -7,13 +7,18 @@ def drawBackground(surface):
     surface.fill(screen_color)
     pygame.display.flip()
 
-def drawFigures(figure,surface,d,transformation):
+def drawFigures(figure,surface,d,transformation, ta, tb, tc):
+    print("in draw figures ",  figure)
     for i in figure:
-        drawFigure(i,surface,d,transformation)
+        drawFigure(i,surface,d,transformation, ta, tb, tc)
+        return
 
-def drawFigure(figure,surface,d,transformation):
+def drawFigure(figure,surface,d,transformation, ta, tb, tc):
     line_color=(0,0,0)
-    figure2d=bo.flatten(figure,d,transformation)
+    print("in draw ",  figure)
+    figure2d=bo.flatten(figure,d,transformation, ta, tb, tc)
+    figure2d=bo.align(figure2d)
+    print("in draw ",  figure2d)
     pygame.draw.line(surface,line_color,figure2d[0],figure2d[1])
     pygame.draw.line(surface,line_color,figure2d[0],figure2d[2])
     pygame.draw.line(surface,line_color,figure2d[0],figure2d[6])
@@ -28,12 +33,7 @@ def drawFigure(figure,surface,d,transformation):
     pygame.draw.line(surface,line_color,figure2d[6],figure2d[7])
 
 
-def reDraw(camera,coordinates,screen,d,transformation):
+def reDraw(camera,coordinates,screen,d,transformation, ta, tb, tc):
     drawBackground(screen)
-    drawFigures(coordinates,screen,d,transformation)
+    drawFigures(coordinates,screen,d,transformation, ta, tb, tc)
         #bo.alignCamera(camera,coordinates),screen)
-
-
-def firstDraw(camera,coordinates,screen,d):
-    drawBackground(screen)
-    drawFigures(bo.alignCamera(camera,coordinates),screen,d)

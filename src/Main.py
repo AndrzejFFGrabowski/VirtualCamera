@@ -18,23 +18,23 @@ def start(coordinates,cameraCoordinates):
     current_size = (XPIX*10, YPIX*10)
     screen = pygame.display.set_mode(current_size)
     pygame.display.set_caption('Camera')
-    dr.reDraw(cameraCoordinates,coordinates,screen,700,transformation,0,0,0)
+    dr.reDraw(cameraCoordinates,coordinates,screen,transformation,[0,0,0],[0,0,0])
     #screen = pygame.display.set_mode((450,450))
     run(cameraCoordinates,coordinates,screen,transformation)
 
 def run(cameraCoordinates,coordinates,screen,transformation):
     running = True
     pygame.display.update()
-    d=[0,0,0]
+    translation=[0,0,0]
+    rotation=translation
     while running:
         event = pygame.event.poll()
-        d=li.keyListener(cameraCoordinates,coordinates,screen,d,transformation)
+        translation,rotation=li.keyListener(cameraCoordinates,coordinates,screen,transformation,translation,rotation)
 
 def main():
     coordinates = Readfile.getCoordinates()
     #print(coordinates)
     cameraCoordinatesT=(150.0,150.0,0)
-    projectionMAtrix=()
     cameraCoordinates=list(cameraCoordinatesT)
     start(coordinates,cameraCoordinates)
 

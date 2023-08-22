@@ -2,10 +2,9 @@ import MathOperation as mo
 import numpy as np
 import math
 
-def flatten(figure3d,d,transformation, ta, tb, tc):
-    print("in flatten = ",figure3d)
+def flatten(figure3d,transformation, translation,rotation):
     projectionMatrix = createProjectiveMatrix(transformation[0],transformation[1],transformation[2],transformation[3],transformation[4],transformation[5])
-    cameraMatrix = createCameraMatrix(ta,tb,tc)
+    cameraMatrix = createCameraMatrix(translation,rotation)
     transformationMatrix = np.matmul(cameraMatrix, projectionMatrix)
     figure4d=mo.asHomogenous(figure3d)
     figure2d= np.ones((len(figure4d),2)) 
@@ -14,7 +13,6 @@ def flatten(figure3d,d,transformation, ta, tb, tc):
         figure4d[i] = vec / vec[3]
         figure2d[i][0] = figure4d[i][0]
         figure2d[i][1] = figure4d[i][1]
-    print(figure4d)
     return figure2d
 
 def alignCamera(camera,coordinates):
@@ -51,12 +49,33 @@ def createProjectiveMatrix(fov,aspect,znear,zfar,left,right):
     ]
     return Matrix
 
-def createCameraMatrix(ta,tb,tc):
-    Matrix=[((1),(0),(0),(ta)),
-            ((0),(1),(0),(tb)),
-            ((0),(0),(1),(tc)),
+def createCameraMatrix(translation,rotation):
+    Matrix=[((1),(0),(0),(translation[0])),
+            ((0),(1),(0),(translation[1])),
+            ((0),(0),(1),(translation[2])),
+            ((0),(0),(0),(1)),
+    ]
+    return createRotationMatrix(Matrix,rotation)
+
+def createRotationMatrix(Matrix,rotation):
+    Xaxis=[((1),(0),(0),(0)),
+            ((0),(math.cos(rotation[0])),(math.sin(rotation[0])),(0)),
+            ((0),(-math.sin(rotation[0])),(math.cos(rotation[0])),(0)),
             ((0),(0),(0),(1)),
     ]
     
-    return Matrix
-
+    Yaxis=[((math.cos(rotation[1])),(0),(-math.sin(rotation[1])),0),
+            ((0),(1),(0),(0)),
+            ((math.sin(rotation[1])),(0),(math.cos(rotation[1])),0),
+            ((0),(0),(0),(1)),
+    ]
+    Zaxis=[((math.cos(rotation[1])),(-math.sin(rotation[0])),(0),0),
+            ((math.sin(rotation[0])),(math.cos(rotation[0])),(0),0),
+            ((0),(0),(1),(0)),
+            ((0),(0),(0),(1)),
+    ]
+    MatrixCamera=np.matmul(Matrix,Xaxis)
+    MatrixCamera=np.matmul(MatrixCamera,Yaxis)
+    MatrixCamera=np.matmul(MatrixCamera,Zaxis)
+    return MatrixCamera
+    

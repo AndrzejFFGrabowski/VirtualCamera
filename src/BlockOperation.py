@@ -5,7 +5,10 @@ import math
 def flatten(figure3d,transformation, translation,rotation):
     projectionMatrix = createProjectiveMatrix(transformation[0],transformation[1],transformation[2],transformation[3],transformation[4],transformation[5])
     cameraMatrix = createCameraMatrix(translation,rotation)
-    transformationMatrix = np.matmul(projectionMatrix,cameraMatrix)
+    rotationMatrix= createRotationMatrix(cameraMatrix,rotation)
+    #tmpMatrix = np.matmul(projectionMatrix,cameraMatrix)
+    #np.linalg.inv(cameraMatrix)
+    transformationMatrix= np.matmul(projectionMatrix,cameraMatrix)
     figure4d=mo.asHomogenous(figure3d)
     figure2d= np.ones((len(figure4d),2)) 
     for i in range (len(figure4d)):
@@ -69,13 +72,14 @@ def createRotationMatrix(Matrix,rotation):
             ((-math.sin(rotation[1])),(0),(math.cos(rotation[1])),0),
             ((0),(0),(0),(1)),
     ]
-    Zaxis=[((math.cos(rotation[1])),(-math.sin(rotation[0])),(0),0),
-            ((math.sin(rotation[0])),(math.cos(rotation[0])),(0),0),
+    Zaxis=[((math.cos(rotation[2])),(-math.sin(rotation[2])),(0),0),
+            ((math.sin(rotation[2])),(math.cos(rotation[2])),(0),0),
             ((0),(0),(1),(0)),
             ((0),(0),(0),(1)),
     ]
+
     MatrixCamera=np.matmul(Xaxis,Matrix)
-    #MatrixCamera=np.matmul(MatrixCamera,Yaxis)
-    #MatrixCamera=np.matmul(MatrixCamera,Zaxis)
+    MatrixCamera=np.matmul(Yaxis,MatrixCamera)
+    MatrixCamera=np.matmul(Zaxis,MatrixCamera)
     return MatrixCamera
     

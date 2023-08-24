@@ -2,8 +2,8 @@ import pygame
 import Draw as dr
 import MathOperation as mo
 
-translationV=0.1
-rotationV=0.1
+translationV=0.5
+rotationV=0.01
 
 def keyListener(camera,coordinates,screen,transformation,translation,rotation):
     pressed = pygame.key.get_pressed()

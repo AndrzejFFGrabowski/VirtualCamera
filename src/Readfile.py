@@ -1,4 +1,5 @@
 import numpy as np
+import pygame 
 
 def getCoordinates():
     array = np.ones((8,8,3))
@@ -20,3 +21,6 @@ def getCoordinates():
     myfile.close()
     return array
 
+def addImage(surface):
+    imp = pygame.image.load("data/Axis1.png").convert()
+    surface.blit(imp,(0,0))

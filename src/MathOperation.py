@@ -1,6 +1,8 @@
 import math
 import numpy as np
 
+maxDistance = 750
+
 def point3Dto2D(point3D):
     point2D=[float((point3D[0]+1)/(point3D[2]+1)),float((point3D[1]+1)/(point3D[2]+1))]
     #print(point2D)
@@ -39,3 +41,8 @@ def asHomogenous(figure3d):
         figure4d[i][3]=1
     return figure4d
 
+def checkDistance(pointA,pointB):
+    distance=math.sqrt((pointA[0]-pointB[0])*(pointA[0]-pointB[0])+(pointA[1]-pointB[1])*(pointA[1]-pointB[1]))
+    if(distance<maxDistance):
+        return True
+    return False

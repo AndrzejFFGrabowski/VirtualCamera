@@ -10,13 +10,12 @@ def drawBackground(surface):
 def drawFigures(figure,surface,transformation, translation,rotation):
     for i in figure:
         drawFigure(i,surface,transformation, translation,rotation)
-        return
 
 def drawFigure(figure,surface,transformation, translation,rotation):
     line_color=(0,0,0)
     figure2d=bo.flatten(figure,transformation, translation,rotation)
     figure2d=bo.align(figure2d)
-    print ("figutre ,",figure2d)
+    #print ("figutre ,",figure2d)
     pygame.draw.line(surface,line_color,figure2d[0],figure2d[1])
     pygame.draw.line(surface,line_color,figure2d[0],figure2d[2])
     pygame.draw.line(surface,line_color,figure2d[0],figure2d[6])

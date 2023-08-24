@@ -12,20 +12,20 @@ Width = GetSystemMetrics(0)
 os.environ['SDL_VIDEO_WINDOW_POS'] = '%d,%d' % (Width/2-300, 100)
 
 def start(coordinates,cameraCoordinates):
-    transformation=[45,1,1,1000000000,110,600]
+    transformation=[45,1,0.1,100000000,110,600]
     pygame.init()
     base_size = (XPIX, YPIX)
     current_size = (XPIX*10, YPIX*10)
     screen = pygame.display.set_mode(current_size)
     pygame.display.set_caption('Camera')
-    dr.reDraw(cameraCoordinates,coordinates,screen,transformation,[0,0,0],[0,0,0])
+    dr.reDraw(cameraCoordinates,coordinates,screen,transformation,[0,0,200],[0,0,0])
     #screen = pygame.display.set_mode((450,450))
     run(cameraCoordinates,coordinates,screen,transformation)
 
 def run(cameraCoordinates,coordinates,screen,transformation):
     running = True
     pygame.display.update()
-    translation=[0,0,0]
+    translation=[0,0,200]
     rotation=translation
     while running:
         event = pygame.event.poll()

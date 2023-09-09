@@ -31,6 +31,6 @@ def drawFigure(figure,surface,transformation, translation,rotation):
     if(mo.checkDistance(figure2d[6],figure2d[7],depth[6],depth[7])):pygame.draw.line(surface,line_color,figure2d[6],figure2d[7])
 
 
-def reDraw(camera,coordinates,screen,transformation, translation,rotation):
+def reDraw(coordinates,screen,transformation, translation,rotation):
     drawBackground(screen)
     drawFigures(coordinates,screen,transformation, translation,rotation)

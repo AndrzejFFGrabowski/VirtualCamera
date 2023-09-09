@@ -3,7 +3,7 @@ import numpy as np
 import math
 
 def flatten(figure,transformation, translation,rotation):
-    projectionMatrix = createProjectiveMatrix(transformation[0],transformation[1],transformation[2],transformation[3],transformation[4],transformation[5])
+    projectionMatrix = createProjectiveMatrix(transformation[0],transformation[1],transformation[2])
     cameraMatrix = createCameraMatrix(translation,rotation)
     np.linalg.inv(cameraMatrix)
     transformationMatrix= np.matmul(projectionMatrix,cameraMatrix)
@@ -12,21 +12,11 @@ def flatten(figure,transformation, translation,rotation):
     depth = np.ones(len(figure4d))
     for i in range (len(figure4d)):
         vec = np.matmul(transformationMatrix, figure4d[i])
-        #print(figure4d[0])
         figure4d[i] = vec / vec[3]
         figure2d[i][0] = figure4d[i][0]
         figure2d[i][1] = figure4d[i][1]
         depth[i] = figure4d[i][2]
-    
     return figure2d, depth
-
-def alignCamera(camera,coordinates):
-    copy=coordinates
-    for tmp in copy:
-        for i in range(len(coordinates)):
-            for j in range(3):
-                tmp[i,j]+=camera[j]
-    return copy
 
 def align(coordinates):
     offset = [250,250]
@@ -35,15 +25,7 @@ def align(coordinates):
         x[1]=(x[1]*50+offset[1])
     return coordinates
 
-def projectMatrix(projectionMatrix,coordinates):
-    copy=coordinates
-    for block in copy:
-        for coordinate in block:
-            coordinate=np.matmul(projectionMatrix,coordinate)
-    return copy
-
-
-def createProjectiveMatrix(fov,aspect,znear,zfar,left,right):
+def createProjectiveMatrix(fov,znear,zfar):
     width = 100
     height= 100
     aspect=height/width

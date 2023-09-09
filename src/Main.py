@@ -12,7 +12,7 @@ Width = GetSystemMetrics(0)
 os.environ['SDL_VIDEO_WINDOW_POS'] = '%d,%d' % (Width/2-300, 100)
 
 def start(coordinates,cameraCoordinates):
-    transformation=[150,1,0.01,1000000,110,600]
+    transformation=[150,1,0.001,1000000,110,600]
     pygame.init()
     base_size = (XPIX, YPIX)
     current_size = (XPIX*10, YPIX*10)

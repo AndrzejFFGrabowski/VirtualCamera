@@ -5,14 +5,13 @@ import math
 def flatten(figure3d,transformation, translation,rotation):
     projectionMatrix = createProjectiveMatrix(transformation[0],transformation[1],transformation[2],transformation[3],transformation[4],transformation[5])
     cameraMatrix = createCameraMatrix(translation,rotation)
-    rotationMatrix= createRotationMatrix(cameraMatrix,rotation)
-    #tmpMatrix = np.matmul(projectionMatrix,cameraMatrix)
-    #np.linalg.inv(cameraMatrix)
+    np.linalg.inv(cameraMatrix)
     transformationMatrix= np.matmul(projectionMatrix,cameraMatrix)
     figure4d=mo.asHomogenous(figure3d)
     figure2d= np.ones((len(figure4d),2)) 
     for i in range (len(figure4d)):
         vec = np.matmul(transformationMatrix, figure4d[i])
+        #print(figure4d[0])
         figure4d[i] = vec / vec[3]
         figure2d[i][0] = figure4d[i][0]
         figure2d[i][1] = figure4d[i][1]

@@ -3,8 +3,10 @@ import MathOperation as mo
 import BlockOperation as bo
 import Readfile as rf
 
+screen_color = (250, 250, 250)
+line_color=(0,0,0)
+
 def drawBackground(surface):
-    screen_color = (250, 250, 250)
     surface.fill(screen_color)
     pygame.display.flip()
 
@@ -13,10 +15,8 @@ def drawFigures(figure,surface,transformation, translation,rotation):
         drawFigure(i,surface,transformation, translation,rotation)
 
 def drawFigure(figure,surface,transformation, translation,rotation):
-    line_color=(0,0,0)
     figure2d=bo.flatten(figure,transformation, translation,rotation)
     figure2d=bo.align(figure2d)
-    #print ("figutre ,",figure2d)
     if(mo.checkDistance(figure2d[0],figure2d[1])):pygame.draw.line(surface,line_color,figure2d[0],figure2d[1])
     if(mo.checkDistance(figure2d[0],figure2d[2])):pygame.draw.line(surface,line_color,figure2d[0],figure2d[2])
     if(mo.checkDistance(figure2d[0],figure2d[6])):pygame.draw.line(surface,line_color,figure2d[0],figure2d[6])
@@ -34,4 +34,3 @@ def drawFigure(figure,surface,transformation, translation,rotation):
 def reDraw(camera,coordinates,screen,transformation, translation,rotation):
     drawBackground(screen)
     drawFigures(coordinates,screen,transformation, translation,rotation)
-        #bo.alignCamera(camera,coordinates),screen)

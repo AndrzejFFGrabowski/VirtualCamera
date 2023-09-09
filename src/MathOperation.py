@@ -41,7 +41,9 @@ def asHomogenous(figure3d):
         figure4d[i][3]=1
     return figure4d
 
-def checkDistance(pointA,pointB):
+def checkDistance(pointA,pointB,depthA,depthB):
+    if(depthA<1 or depthB<1):
+        return False
     distance=math.sqrt((pointA[0]-pointB[0])*(pointA[0]-pointB[0])+(pointA[1]-pointB[1])*(pointA[1]-pointB[1]))
     if(distance<maxDistance):
         return True

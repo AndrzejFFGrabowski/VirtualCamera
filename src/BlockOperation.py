@@ -2,20 +2,23 @@ import MathOperation as mo
 import numpy as np
 import math
 
-def flatten(figure3d,transformation, translation,rotation):
+def flatten(figure,transformation, translation,rotation):
     projectionMatrix = createProjectiveMatrix(transformation[0],transformation[1],transformation[2],transformation[3],transformation[4],transformation[5])
     cameraMatrix = createCameraMatrix(translation,rotation)
     np.linalg.inv(cameraMatrix)
     transformationMatrix= np.matmul(projectionMatrix,cameraMatrix)
-    figure4d=mo.asHomogenous(figure3d)
+    figure4d=mo.asHomogenous(figure)
     figure2d= np.ones((len(figure4d),2)) 
+    depth = np.ones(len(figure4d))
     for i in range (len(figure4d)):
         vec = np.matmul(transformationMatrix, figure4d[i])
         #print(figure4d[0])
         figure4d[i] = vec / vec[3]
         figure2d[i][0] = figure4d[i][0]
         figure2d[i][1] = figure4d[i][1]
-    return figure2d
+        depth[i] = figure4d[i][2]
+    
+    return figure2d, depth
 
 def alignCamera(camera,coordinates):
     copy=coordinates
